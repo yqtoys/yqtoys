@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopEasy - Your Online Shopping Destination</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+        body { background-color: #f8f9fa; color: #333; line-height: 1.6; }
+        .container { width: 1200px; margin: 0 auto; }
+        .header { background: linear-gradient(135deg, #ff6b35 0%, #ff8e53 100%); color: white; padding: 12px 0; box-shadow: 0 2px 10px rgba(255, 107, 53, 0.3); }
+        .top-nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 26px; font-weight: bold; display: flex; align-items: center; }
+        .logo-icon { margin-right: 10px; font-size: 28px; }
+        .nav-links { display: flex; gap: 20px; }
+        .nav-links a { color: white; padding: 8px 15px; border-radius: 4px; transition: background-color 0.3s; text-decoration: none; }
+        .nav-links a:hover { background-color: rgba(255, 255, 255, 0.2); }
+        .search-area { background-color: white; padding: 25px 0; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .search-box { display: flex; width: 650px; margin: 0 auto; border-radius: 24px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.1); border: 2px solid #ff6b35; }
+        .search-box input { flex: 1; padding: 14px 20px; border: none; outline: none; font-size: 16px; }
+        .search-box button { padding: 0 30px; background-color: #ff6b35; color: white; border: none; cursor: pointer; font-size: 16px; transition: background-color 0.3s; }
+        .search-box button:hover { background-color: #e55a2b; }
+        .categories { background-color: white; margin-top: 20px; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .category-list { display: flex; list-style: none; justify-content: space-around; }
+        .category-list li a { padding: 10px 20px; border-radius: 6px; transition: all 0.3s; display: flex; flex-direction: column; align-items: center; text-align: center; text-decoration: none; color: #333; }
+        .category-list li a i { font-size: 24px; margin-bottom: 8px; color: #ff6b35; }
+        .category-list li a:hover { background-color: #ff6b35; color: white; transform: translateY(-3px); }
+        .category-list li a:hover i { color: white; }
+        .section-title { margin: 30px 0 20px; font-size: 22px; color: #333; border-left: 4px solid #ff6b35; padding-left: 12px; }
+        .products { display: flex; flex-wrap: wrap; margin-top: 10px; gap: 20px; }
+        .product-card { width: 230px; background-color: white; border-radius: 8px; overflow: hidden; box-shadow: 0 3px 10px rgba(0,0,0,0.1); transition: all 0.3s; }
+        .product-card:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,0,0,0.15); }
+        .product-img { width: 100%; height: 200px; background: linear-gradient(135deg, #f8f8f8 0%, #e8e8e8 100%); display: flex; align-items: center; justify-content: center; color: #999; position: relative; overflow: hidden; }
+        .product-info { padding: 15px; }
+        .product-title { font-size: 14px; height: 40px; overflow: hidden; margin-bottom: 10px; }
+        .product-price { color: #ff6b35; font-weight: bold; font-size: 18px; margin-top: 5px; }
+        .product-seller { color: #666; font-size: 12px; margin-top: 5px; }
+        .product-actions { display: flex; justify-content: space-between; margin-top: 15px; }
+        .btn-cart, .btn-buy { padding: 8px 15px; border: none; border-radius: 4px; cursor: pointer; font-size: 14px; transition: all 0.3s; }
+        .btn-cart { background-color: #f8f8f8; color: #666; }
+        .btn-cart:hover { background-color: #ff6b35; color: white; }
+        .btn-buy { background-color: #ff6b35; color: white; }
+        .btn-buy:hover { background-color: #e55a2b; }
+        .footer { margin-top: 50px; background-color: white; padding: 40px 0; text-align: center; color: #999; border-top: 1px solid #eee; }
+        .footer-links { display: flex; justify-content: center; margin-bottom: 20px; flex-wrap: wrap; }
+        .footer-links a { margin: 0 15px; color: #666; transition: color 0.3s; text-decoration: none; }
+        .footer-links a:hover { color: #ff6b35; }
+        @media (max-width: 1200px) { .container { width: 95%; } .product-card { width: calc(25% - 20px); } }
+        @media (max-width: 992px) { .product-card { width: calc(33.333% - 20px); } }
+        @media (max-width: 768px) { .product-card { width: calc(50% - 20px); } .search-box { width: 90%; } .category-list { flex-wrap: wrap; } .category-list li { margin-bottom: 10px; width: 25%; } }
+        @media (max-width: 576px) { .product-card { width: 100%; } .category-list li { width: 33.333%; } .nav-links { flex-direction: column; gap: 5px; } }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <div class="top-nav">
+                <div class="logo">
+                    <span class="logo-icon">🛒</span>
+                    ShopEasy
+                </div>
+                <div class="nav-links">
+                    <a href="login.html"><i class="fas fa-user"></i> Login</a>
+                    <a href="register.html"><i class="fas fa-user-plus"></i> Register</a>
+                    <a href="#"><i class="fas fa-store"></i> Sell on ShopEasy</a>
+                    <a href="#"><i class="fas fa-shopping-cart"></i> Cart</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="search-area">
+        <div class="container">
+            <div class="search-box">
+                <input type="text" placeholder="Search for products...">
+                <button><i class="fas fa-search"></i> Search</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="categories">
+            <ul class="category-list">
+                <li><a href="#"><i class="fas fa-mobile-alt"></i> Electronics</a></li>
+                <li><a href="#"><i class="fas fa-laptop"></i> Computers</a></li>
+                <li><a href="#"><i class="fas fa-tshirt"></i> Fashion</a></li>
+                <li><a href="#"><i class="fas fa-home"></i> Home & Garden</a></li>
+                <li><a href="#"><i class="fas fa-utensils"></i> Groceries</a></li>
+                <li><a href="#"><i class="fas fa-palette"></i> Beauty</a></li>
+                <li><a href="#"><i class="fas fa-running"></i> Sports</a></li>
+                <li><a href="#"><i class="fas fa-book"></i> Books</a></li>
+            </ul>
+        </div>
+        
+        <h2 class="section-title">Popular Products</h2>
+        <div class="products" id="products-container"></div>
+        
+        <h2 class="section-title">New Arrivals</h2>
+        <div class="products" id="new-products-container"></div>
+    </div>
+    
+    <div class="footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="#">About Us</a>
+                <a href="#">Contact</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Sell on ShopEasy</a>
+                <a href="#">Help Center</a>
+            </div>
+            <p>© 2023 ShopEasy Inc. | Your Trusted Online Shopping Platform</p>
+        </div>
+    </div>
+
+    <script>
+        const sampleProducts = [
+            { id: 1, title: "Smartphone 128GB Large Memory HD Camera Long Battery", price: 1999.00, seller: "Official Store", isNew: false },
+            { id: 2, title: "Laptop Computer Lightweight Portable High Performance", price: 5999.00, seller: "Tech Store", isNew: false },
+            { id: 3, title: "Wireless Bluetooth Headphones Noise Cancelling", price: 299.00, seller: "Audio Experts", isNew: true },
+            { id: 4, title: "Running Shoes Breathable Comfortable Athletic", price: 399.00, seller: "Sports Outlet", isNew: false },
+            { id: 5, title: "Home Air Purifier Remove PM2.5 Smart Control", price: 899.00, seller: "Home Essentials", isNew: true },
+            { id: 6, title: "Skincare Set Moisturizing Anti-aging Complete Care", price: 599.00, seller: "Beauty Official", isNew: false },
+            { id: 7, title: "Smart Watch Fitness Tracker Heart Rate Monitor", price: 1299.00, seller: "Gadget Store", isNew: true },
+            { id: 8, title: "Camera Backpack Multi-functional Waterproof Large Capacity", price: 259.00, seller: "Outdoor Gear", isNew: true }
+        ];
+        
+        function renderProducts(products, containerId, filterNew = false) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = '';
+            const filteredProducts = filterNew ? products.filter(product => product.isNew) : products.filter(product => !product.isNew);
+            filteredProducts.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.innerHTML = `
+                    <div class="product-img"></div>
+                    <div class="product-info">
+                        <div class="product-title">${product.title}</div>
+                        <div class="product-price">$${product.price.toFixed(2)}</div>
+                        <div class="product-seller">Sold by: ${product.seller}</div>
+                        <div class="product-actions">
+                            <button class="btn-cart"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                            <button class="btn-buy">Buy Now</button>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(productCard);
+            });
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProducts(sampleProducts, 'products-container');
+            renderProducts(sampleProducts, 'new-products-container', true);
+        });
+    </script>
+</body>
+</html>

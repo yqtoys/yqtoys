@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - ShopEasy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+        body { background-color: #f8f9fa; color: #333; line-height: 1.6; display: flex; flex-direction: column; min-height: 100vh; }
+        .container { width: 1200px; margin: 0 auto; }
+        .header { background: linear-gradient(135deg, #ff6b35 0%, #ff8e53 100%); color: white; padding: 12px 0; box-shadow: 0 2px 10px rgba(255, 107, 53, 0.3); }
+        .top-nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 26px; font-weight: bold; display: flex; align-items: center; }
+        .logo-icon { margin-right: 10px; font-size: 28px; }
+        .nav-links { display: flex; gap: 20px; }
+        .nav-links a { color: white; padding: 8px 15px; border-radius: 4px; transition: background-color 0.3s; text-decoration: none; }
+        .nav-links a:hover { background-color: rgba(255, 255, 255, 0.2); }
+        .register-container { display: flex; justify-content: center; align-items: center; flex-grow: 1; padding: 40px 0; }
+        .register-box { background: white; border-radius: 10px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); width: 450px; padding: 40px; }
+        .register-header { text-align: center; margin-bottom: 30px; }
+        .register-header h2 { color: #333; margin-bottom: 10px; }
+        .register-header p { color: #666; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 500; color: #555; }
+        .form-control { width: 100%; padding: 12px 15px; border: 1px solid #ddd; border-radius: 5px; font-size: 16px; transition: border 0.3s; }
+        .form-control:focus { border-color: #ff6b35; outline: none; box-shadow: 0 0 0 2px rgba(255, 107, 53, 0.2); }
+        .name-fields { display: flex; gap: 15px; }
+        .name-fields .form-group { flex: 1; }
+        .btn-register { width: 100%; padding: 12px; background: #ff6b35; color: white; border: none; border-radius: 5px; font-size: 16px; font-weight: 600; cursor: pointer; transition: background 0.3s; }
+        .btn-register:hover { background: #e55a2b; }
+        .terms { margin: 20px 0; font-size: 14px; color: #666; }
+        .terms input { margin-right: 5px; }
+        .terms a { color: #ff6b35; text-decoration: none; }
+        .terms a:hover { text-decoration: underline; }
+        .divider { text-align: center; margin: 25px 0; position: relative; color: #999; }
+        .divider::before { content: ""; position: absolute; top: 50%; left: 0; right: 0; height: 1px; background: #eee; z-index: 1; }
+        .divider span { background: white; padding: 0 15px; position: relative; z-index: 2; }
+        .social-register { display: flex; gap: 15px; }
+        .btn-social { flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 5px; background: white; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; transition: background 0.3s; }
+        .btn-social:hover { background: #f5f5f5; }
+        .btn-google { color: #db4437; }
+        .btn-facebook { color: #4267B2; }
+        .login-link { text-align: center; margin-top: 25px; color: #666; }
+        .login-link a { color: #ff6b35; text-decoration: none; font-weight: 500; }
+        .login-link a:hover { text-decoration: underline; }
+        .password-strength { margin-top: 5px; font-size: 12px; display: none; }
+        .strength-weak { color: #e74c3c; }
+        .strength-medium { color: #f39c12; }
+        .strength-strong { color: #2ecc71; }
+        .footer { background-color: white; padding: 30px 0; text-align: center; color: #999; border-top: 1px solid #eee; margin-top: auto; }
+        .footer-links { display: flex; justify-content: center; margin-bottom: 15px; flex-wrap: wrap; }
+        .footer-links a { margin: 0 15px; color: #666; transition: color 0.3s; text-decoration: none; }
+        .footer-links a:hover { color: #ff6b35; }
+        @media (max-width: 768px) { .container { width: 95%; } .register-box { width: 90%; padding: 30px 25px; } .name-fields { flex-direction: column; gap: 0; } }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <div class="top-nav">
+                <div class="logo">
+                    <span class="logo-icon">🛒</span>
+                    <a href="index.php" style="color: white; text-decoration: none;">ShopEasy</a>
+                </div>
+                <div class="nav-links">
+                    <a href="index.php"><i class="fas fa-home"></i> Home</a>
+                    <a href="login.html"><i class="fas fa-user"></i> Login</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="register-container">
+        <div class="register-box">
+            <div class="register-header">
+                <h2>Create Your Account</h2>
+                <p>Join ShopEasy to start shopping today</p>
+            </div>
+            
+            <form id="registerForm">
+                <div class="name-fields">
+                    <div class="form-group">
+                        <label for="firstName">First Name</label>
+                        <input type="text" id="firstName" name="firstName" class="form-control" placeholder="First name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name</label>
+                        <input type="text" id="lastName" name="lastName" class="form-control" placeholder="Last name" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" class="form-control" placeholder="Enter your email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" class="form-control" placeholder="Create a password (min 6 characters)" required>
+                    <div id="passwordStrength" class="password-strength"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" class="form-control" placeholder="Confirm your password" required>
+                    <div id="passwordMatch" class="password-strength"></div>
+                </div>
+                
+                <div class="terms">
+                    <input type="checkbox" id="agreeTerms" name="agreeTerms" required>
+                    <label for="agreeTerms">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></label>
+                </div>
+                
+                <button type="submit" class="btn-register">Create Account</button>
+            </form>
+            
+            <div class="divider">
+                <span>Or sign up with</span>
+            </div>
+            
+            <div class="social-register">
+                <button class="btn-social btn-google">
+                    <i class="fab fa-google"></i>
+                    <span>Google</span>
+                </button>
+                <button class="btn-social btn-facebook">
+                    <i class="fab fa-facebook-f"></i>
+                    <span>Facebook</span>
+                </button>
+            </div>
+            
+            <div class="login-link">
+                Already have an account? <a href="login.html">Sign in here</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="#">About Us</a>
+                <a href="#">Contact</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Help Center</a>
+            </div>
+            <p>© 2023 ShopEasy Inc. | Your Trusted Online Shopping Platform</p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('password').addEventListener('input', function() {
+            const password = this.value;
+            const strengthIndicator = document.getElementById('passwordStrength');
+            
+            if (password.length === 0) {
+                strengthIndicator.style.display = 'none';
+                return;
+            }
+            
+            strengthIndicator.style.display = 'block';
+            let strength = 0;
+            if (password.length >= 8) strength++;
+            if (/[A-Z]/.test(password)) strength++;
+            if (/[0-9]/.test(password)) strength++;
+            if (/[^A-Za-z0-9]/.test(password)) strength++;
+            
+            if (strength < 2) {
+                strengthIndicator.textContent = 'Weak password';
+                strengthIndicator.className = 'password-strength strength-weak';
+            } else if (strength < 4) {
+                strengthIndicator.textContent = 'Medium strength password';
+                strengthIndicator.className = 'password-strength strength-medium';
+            } else {
+                strengthIndicator.textContent = 'Strong password';
+                strengthIndicator.className = 'password-strength strength-strong';
+            }
+        });
+        
+        document.getElementById('confirmPassword').addEventListener('input', function() {
+            const password = document.getElementById('password').value;
+            const confirmPassword = this.value;
+            const matchIndicator = document.getElementById('passwordMatch');
+            
+            if (confirmPassword.length === 0) {
+                matchIndicator.style.display = 'none';
+                return;
+            }
+            
+            matchIndicator.style.display = 'block';
+            
+            if (password === confirmPassword) {
+                matchIndicator.textContent = 'Passwords match';
+                matchIndicator.className = 'password-strength strength-strong';
+            } else {
+                matchIndicator.textContent = 'Passwords do not match';
+                matchIndicator.className = 'password-strength strength-weak';
+            }
+        });
+        
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const submitBtn = this.querySelector('.btn-register');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Registering...';
+            submitBtn.disabled = true;
+            
+            fetch('register.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert(data.message);
+                    window.location.href = 'login.html';
+                } else {
+                    alert(data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Registration failed, please try again later');
+            })
+            .finally(() => {
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            });
+        });
+    </script>
+</body>
+</html>

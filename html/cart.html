@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - ShopEasy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+        body { background-color: #f8f9fa; color: #333; line-height: 1.6; }
+        .container { width: 1200px; margin: 0 auto; }
+        .header { background: linear-gradient(135deg, #ff6b35 0%, #ff8e53 100%); color: white; padding: 12px 0; }
+        .top-nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 26px; font-weight: bold; display: flex; align-items: center; }
+        .logo-icon { margin-right: 10px; font-size: 28px; }
+        .nav-links { display: flex; gap: 20px; }
+        .nav-links a { color: white; padding: 8px 15px; border-radius: 4px; transition: background-color 0.3s; text-decoration: none; }
+        .nav-links a:hover { background-color: rgba(255, 255, 255, 0.2); }
+        .cart-container { display: flex; gap: 30px; margin: 30px 0; }
+        .cart-items { flex: 2; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .cart-summary { flex: 1; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); height: fit-content; }
+        .cart-item { display: flex; gap: 20px; padding: 20px 0; border-bottom: 1px solid #eee; }
+        .item-image { width: 100px; height: 100px; background: #f8f9fa; border-radius: 5px; display: flex; align-items: center; justify-content: center; color: #999; }
+        .item-details { flex: 1; }
+        .item-title { font-weight: 600; margin-bottom: 5px; }
+        .item-price { color: #ff6b35; font-weight: bold; font-size: 18px; }
+        .item-quantity { display: flex; align-items: center; gap: 10px; margin: 10px 0; }
+        .quantity-btn { width: 30px; height: 30px; border: 1px solid #ddd; background: white; border-radius: 3px; cursor: pointer; }
+        .remove-btn { color: #ff6b35; background: none; border: none; cursor: pointer; margin-top: 10px; }
+        .summary-line { display: flex; justify-content: space-between; margin: 15px 0; }
+        .total { border-top: 2px solid #eee; padding-top: 15px; margin-top: 15px; font-weight: bold; font-size: 18px; }
+        .checkout-btn { background: #ff6b35; color: white; padding: 15px; border: none; border-radius: 5px; font-size: 16px; font-weight: 600; cursor: pointer; width: 100%; margin-top: 20px; }
+        .checkout-btn:hover { background: #e55a2b; }
+        .empty-cart { text-align: center; padding: 60px 20px; }
+        .empty-cart i { font-size: 64px; color: #ddd; margin-bottom: 20px; }
+        .footer { background-color: white; padding: 30px 0; text-align: center; color: #999; border-top: 1px solid #eee; margin-top: 50px; }
+        .footer-links { display: flex; justify-content: center; margin-bottom: 15px; flex-wrap: wrap; }
+        .footer-links a { margin: 0 15px; color: #666; transition: color 0.3s; text-decoration: none; }
+        .footer-links a:hover { color: #ff6b35; }
+        @media (max-width: 768px) { .container { width: 95%; } .cart-container { flex-direction: column; } }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <div class="top-nav">
+                <div class="logo">
+                    <span class="logo-icon">🛒</span>
+                    <a href="index.php" style="color: white; text-decoration: none;">ShopEasy</a>
+                </div>
+                <div class="nav-links">
+                    <a href="user_dashboard.html"><i class="fas fa-user"></i> Dashboard</a>
+                    <a href="sell_product.html"><i class="fas fa-plus"></i> Sell Product</a>
+                    <a href="cart.html"><i class="fas fa-shopping-cart"></i> Cart (0)</a>
+                    <a href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1 style="margin: 30px 0;">Shopping Cart</h1>
+        
+        <div class="cart-container">
+            <div class="cart-items">
+                <div class="empty-cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <h2>Your cart is empty</h2>
+                    <p>Browse our products and add items to your cart</p>
+                    <a href="index.php" style="display: inline-block; background: #ff6b35; color: white; padding: 12px 25px; text-decoration: none; border-radius: 5px; margin-top: 20px;">
+                        Continue Shopping
+                    </a>
+                </div>
+                
+                <!-- Example cart item (commented out for now) -->
+                <!--
+                <div class="cart-item">
+                    <div class="item-image">Product Image</div>
+                    <div class="item-details">
+                        <div class="item-title">Sample Product</div>
+                        <div class="item-price">$99.99</div>
+                        <div class="item-quantity">
+                            <button class="quantity-btn">-</button>
+                            <span>1</span>
+                            <button class="quantity-btn">+</button>
+                        </div>
+                        <button class="remove-btn"><i class="fas fa-trash"></i> Remove</button>
+                    </div>
+                </div>
+                -->
+            </div>
+
+            <div class="cart-summary">
+                <h3>Order Summary</h3>
+                <div class="summary-line">
+                    <span>Subtotal:</span>
+                    <span>$0.00</span>
+                </div>
+                <div class="summary-line">
+                    <span>Shipping:</span>
+                    <span>$0.00</span>
+                </div>
+                <div class="summary-line">
+                    <span>Tax:</span>
+                    <span>$0.00</span>
+                </div>
+                <div class="summary-line total">
+                    <span>Total:</span>
+                    <span>$0.00</span>
+                </div>
+                <button class="checkout-btn" disabled>Proceed to Checkout</button>
+                <p style="text-align: center; margin-top: 15px; color: #666; font-size: 14px;">Add items to cart to proceed</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="#">About Us</a>
+                <a href="#">Contact</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Help Center</a>
+            </div>
+            <p>© 2023 ShopEasy Inc. | Your Trusted Online Shopping Platform</p>
+        </div>
+    </div>
+</body>
+</html>

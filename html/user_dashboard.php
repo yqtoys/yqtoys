@@ -1,0 +1,120 @@
+<?php
+require_once 'check_login.php';
+$user = getUserInfo();
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard - ShopEasy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+        body { background-color: #f8f9fa; color: #333; line-height: 1.6; }
+        .container { width: 1200px; margin: 0 auto; }
+        .header { background: linear-gradient(135deg, #ff6b35 0%, #ff8e53 100%); color: white; padding: 12px 0; }
+        .top-nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 26px; font-weight: bold; display: flex; align-items: center; }
+        .logo-icon { margin-right: 10px; font-size: 28px; }
+        .nav-links { display: flex; gap: 20px; align-items: center; }
+        .nav-links a { color: white; padding: 8px 15px; border-radius: 4px; transition: background-color 0.3s; text-decoration: none; }
+        .nav-links a:hover { background-color: rgba(255, 255, 255, 0.2); }
+        .welcome-text { color: white; }
+        .dashboard { display: flex; margin: 30px 0; gap: 30px; }
+        .sidebar { width: 250px; background: white; border-radius: 10px; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .sidebar-menu { list-style: none; }
+        .sidebar-menu li { margin-bottom: 10px; }
+        .sidebar-menu a { display: flex; align-items: center; gap: 10px; padding: 12px 15px; color: #333; text-decoration: none; border-radius: 5px; transition: all 0.3s; }
+        .sidebar-menu a:hover, .sidebar-menu a.active { background: #ff6b35; color: white; }
+        .main-content { flex: 1; background: white; border-radius: 10px; padding: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .welcome-section { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 10px; margin-bottom: 30px; }
+        .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 30px; }
+        .stat-card { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); text-align: center; border-left: 4px solid #ff6b35; }
+        .stat-number { font-size: 32px; font-weight: bold; color: #ff6b35; }
+        .stat-label { color: #666; margin-top: 5px; }
+        .footer { background-color: white; padding: 30px 0; text-align: center; color: #999; border-top: 1px solid #eee; margin-top: 50px; }
+        .footer-links { display: flex; justify-content: center; margin-bottom: 15px; flex-wrap: wrap; }
+        .footer-links a { margin: 0 15px; color: #666; transition: color 0.3s; text-decoration: none; }
+        .footer-links a:hover { color: #ff6b35; }
+        @media (max-width: 768px) { .container { width: 95%; } .dashboard { flex-direction: column; } .sidebar { width: 100%; } .stats-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <div class="top-nav">
+                <div class="logo">
+                    <span class="logo-icon">🛒</span>
+                    <a href="index.php" style="color: white; text-decoration: none;">ShopEasy</a>
+                </div>
+                <div class="nav-links">
+                    <span class="welcome-text">Welcome, <?php echo htmlspecialchars($user['name']); ?>!</span>
+                    <a href="user_dashboard.php"><i class="fas fa-user"></i> Dashboard</a>
+                    <a href="sell_product.php"><i class="fas fa-plus"></i> Sell Product</a>
+                    <a href="cart.php"><i class="fas fa-shopping-cart"></i> Cart</a>
+                    <a href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="dashboard">
+            <div class="sidebar">
+                <ul class="sidebar-menu">
+                    <li><a href="user_dashboard.php" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                    <li><a href="profile.php"><i class="fas fa-user-edit"></i> Edit Profile</a></li>
+                    <li><a href="my_products.php"><i class="fas fa-box"></i> My Products</a></li>
+                    <li><a href="sell_product.php"><i class="fas fa-plus-circle"></i> Sell Product</a></li>
+                    <li><a href="orders.php"><i class="fas fa-shopping-bag"></i> My Orders</a></li>
+                    <li><a href="cart.php"><i class="fas fa-shopping-cart"></i> Shopping Cart</a></li>
+                    <li><a href="wishlist.php"><i class="fas fa-heart"></i> Wishlist</a></li>
+                    <li><a href="settings.php"><i class="fas fa-cog"></i> Settings</a></li>
+                </ul>
+            </div>
+
+            <div class="main-content">
+                <div class="welcome-section">
+                    <h1>Welcome to Your Dashboard, <?php echo htmlspecialchars($user['name']); ?>!</h1>
+                    <p>Manage your account, products, and orders in one place.</p>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">0</div>
+                        <div class="stat-label">Products Listed</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">0</div>
+                        <div class="stat-label">Orders</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">$0.00</div>
+                        <div class="stat-label">Total Sales</div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 30px; text-align: center;">
+                    <a href="sell_product.php" style="background: #ff6b35; color: white; padding: 15px 30px; text-decoration: none; border-radius: 5px; display: inline-block;">
+                        <i class="fas fa-plus"></i> List Your First Product
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="#">About Us</a>
+                <a href="#">Contact</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Help Center</a>
+            </div>
+            <p>© 2023 ShopEasy Inc. | Your Trusted Online Shopping Platform</p>
+        </div>
+    </div>
+</body>
+</html>
